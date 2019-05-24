@@ -9,7 +9,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.sendFile("index.html"));
-app.get("/emoji/:emoji", (req, res) => {
+app.get("/:emoji", (req, res) => {
   const input = req.params.emoji;
 
   sendEmojiResponse(res, input);
