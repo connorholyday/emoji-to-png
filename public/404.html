@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Emoji to PNG</title>
+    <meta
+      name="description"
+      content="Convert an emoji to PNG with the click of a button!"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff9ff3" />
+    <meta name="msapplication-TileColor" content="#ffd1ff" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body class="home">
+    <main class="main">
+      <h1 class="logo"><img src="./unicorn.png" alt="Emoji to Png" /></h1>
+      <form class="form" autocomplete="off" method="POST" action="/emoji">
+        <label class="label" for="emoji"
+          >Type your emoji to download a png</label
+        >
+        <div class="input-group">
+          <input name="emoji" id="emoji" type="text" class="input" autofocus />
+          <button type="submit" class="button">Go!</button>
+        </div>
+      </form>
+      <p>Oops! It looks like we don't have that emoji yet, sorry :(</p>
+    </main>
+    <footer class="footer">
+      <p>
+        Built with 💖by
+        <a href="https://aranja.com" target="_blank" rel="noopener noreferrer"
+          >aranja</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
