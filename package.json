@@ -10,9 +10,7 @@
   "dependencies": {
     "next": "9.0.5",
     "react": "16.9.0",
-    "react-dom": "16.9.0"
-  },
-  "devDependencies": {
+    "react-dom": "16.9.0",
     "express": "^4.17.1",
     "node-emoji": "^1.10.0"
   }
