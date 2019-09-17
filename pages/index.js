@@ -1,37 +1,47 @@
 import React from "react";
 import theme from "../components/theme";
+import Layout from "../components/layout";
 
 const Home = () => (
-  <div className="home">
-    <main className="main">
-      <h1 className="logo">
-        <img src="/static/unicorn.png" alt="Emoji to Png" />
-      </h1>
-      <form className="form" autoComplete="off" method="POST" action="/emoji">
-        <label className="label" htmlFor="emoji">
-          Type your emoji to download a png
-        </label>
-        <div className="input-group">
-          <input
-            name="emoji"
-            id="emoji"
-            type="text"
-            className="input"
-            autoFocus
-          />
-          <button type="submit" className="button">
-            Go!
-          </button>
-        </div>
-      </form>
-    </main>
-
+  <>
+    <div className="home">
+      <Layout>
+        <main className="main">
+          <h1 className="logo">
+            <img src="/static/unicorn.png" alt="Emoji to Png" />
+          </h1>
+          <form
+            className="form"
+            autoComplete="off"
+            method="POST"
+            action="/emoji"
+          >
+            <label className="label" htmlFor="emoji">
+              Type your emoji to download a png
+            </label>
+            <div className="input-group">
+              <input
+                name="emoji"
+                id="emoji"
+                type="text"
+                className="input"
+                autoFocus
+              />
+              <button type="submit" className="button">
+                Go!
+              </button>
+            </div>
+          </form>
+        </main>
+      </Layout>
+    </div>
     <style jsx>{`
       .home {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        height: 100vh;
       }
 
       .main {
@@ -110,7 +120,7 @@ const Home = () => (
         display: block;
       }
     `}</style>
-  </div>
+  </>
 );
 
 export default Home;

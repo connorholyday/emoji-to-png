@@ -1,8 +1,6 @@
 import React from "react";
 import App from "next/app";
 import theme from "../components/theme";
-import Header from "../components/header";
-import Footer from "../components/footer";
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -21,9 +19,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <>
-        <Header />
         <Component {...pageProps} />
-        <Footer />
         <style jsx global>{`
           *::before,
           *::after {
