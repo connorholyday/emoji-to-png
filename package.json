@@ -1,21 +1,19 @@
 {
-  "name": "emoji",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "engines": {
-    "node": "12.1.0",
-    "yarn": "1.15.2"
-  },
+  "name": "emoji-to-image",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node index.js"
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "fontkit": "^1.8.0",
-    "mkdirp": "^0.5.1",
-    "node-emoji": "^1.10.0",
-    "rimraf": "^2.6.3"
+    "next": "9.0.5",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "node-emoji": "^1.10.0"
   }
 }
