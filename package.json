@@ -1,17 +1,25 @@
 {
-  "name": "emoji-to-image",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js"
-  },
-  "dependencies": {
-    "next": "9.0.5",
-    "react": "16.9.0",
-    "react-dom": "16.9.0",
-    "express": "^4.17.1",
-    "node-emoji": "^1.10.0"
-  }
+    "name": "emoji-to-image",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "node server.js",
+        "build": "next build",
+        "start": "NODE_ENV=production node server.js"
+    },
+    "dependencies": {
+        "@zeit/next-css": "^1.0.1",
+        "emoji-mart": "^2.11.1",
+        "express": "^4.17.1",
+        "next": "9.0.5",
+        "node-emoji": "^1.10.0",
+        "react": "16.9.0",
+        "react-dom": "16.9.0"
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 2,
+        "semi": true,
+        "singleQuote": true
+    }
 }
