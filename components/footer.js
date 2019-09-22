@@ -1,10 +1,11 @@
-import React from "react";
-import theme from "./theme";
+import React from 'react';
+import theme from './theme';
 
 export default () => (
   <footer className="footer">
     <p>
-      Built with 💖by
+      Built with{' '}
+      <img src="/static/sparkling_heart.png" width="16px" height="16px" /> by
       <a href="https://aranja.com" target="_blank" rel="noopener noreferrer">
         aranja
       </a>
@@ -19,9 +20,16 @@ export default () => (
 
       .footer p {
         margin: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer img {
+        margin: 0 0.25em;
       }
 
       .footer a {
+        margin-left: 0.25em;
         color: ${theme.colors.aranja};
         font-weight: 700;
         text-decoration: none;
