@@ -1,15 +1,38 @@
 import React, { useRef, useState, useEffect } from 'react';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import { animated, useTransition } from 'react-spring';
+import EmojiConverter from '../utils/emoji2';
 import theme from '../components/theme';
 import Layout from '../components/layout';
 
 const Home = () => {
-  const formRef = useRef();
-  const [value, setValue] = useState('');
-  const [hasJs, setHasJs] = useState(false);
+  const emojiRef = useRef(new EmojiConverter());
+  const [path, setPath] = useState('/unicorn.png');
+  const [name, setName] = useState('Emoji to Png');
+  const [id, setId] = useState('unicorn');
+  const [set, setSet] = useState('apple');
+  const sets = [
+    'apple',
+    'google',
+    'twitter',
+    'emojione',
+    'messenger',
+    'facebook',
+  ];
 
-  useEffect(() => void setHasJs(typeof window !== 'undefined'), []);
+  const handleSelect = ({ colons, name, id }) => {
+    setName(name);
+    setId(id);
+    setPath(emojiRef.current.replace_colons(colons));
+  };
+
+  const mainImage = useTransition(path, null, {
+    initial: { transform: 'rotate(1turn)' },
+    from: { transform: 'rotate(0turn)' },
+    enter: { transform: 'rotate(1turn)' },
+    leave: { transform: 'rotate(1turn)' },
+  });
 
   return (
     <>
@@ -17,49 +40,86 @@ const Home = () => {
         <Layout>
           <main className="main">
             <h1 className="logo">
-              <img src="/static/unicorn.png" alt="Emoji to Png" />
-            </h1>
-            {hasJs ? (
-              <div>
-                <p style={{ textAlign: 'center' }}>Choose an emoji to download it as an image</p>
-                <Picker
-                  onSelect={() => void formRef.current.submit()}
-                  set="apple"
-                  title="Pick your emoji..."
-                  emoji="point_up"
+              {mainImage.map(({ item, key, props }) => (
+                <animated.img
+                  key={id}
+                  style={props}
+                  src={`/static${path}`}
+                  alt={name}
                 />
+              ))}
+            </h1>
+            <div className="container">
+              <div>
+                <a
+                  className="download"
+                  href={`/static${path}`}
+                  download={`${id}.png`}
+                >
+                  Download {id}.png
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 5l4 4 4-4M5 1v8"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
               </div>
-            ) : (
-              <form
-                ref={formRef}
-                className="form"
-                autoComplete="off"
-                method="POST"
-                action="/emoji"
-              >
-                <label className="label" htmlFor="emoji">
-                  Type your emoji to download a png
-                </label>
-                <div className="input-group">
-                  <input
-                    name="emoji"
-                    id="emoji"
-                    type="text"
-                    className="input"
-                    autoFocus
-                    onChange={e => setValue(e.target.value)}
-                    value={value}
-                  />
-                  <button type="submit" className="button">
-                    Go!
-                  </button>
-                </div>
-              </form>
-            )}
+              <p style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                Choose an emoji and then download it as an image
+              </p>
+              <Picker
+                onSelect={handleSelect}
+                set={set}
+                title="Pick your emoji..."
+                emoji="point_up"
+                exclude={['recent']}
+              />
+            </div>
           </main>
         </Layout>
       </div>
       <style jsx>{`
+        .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .download {
+          font-size: 18px;
+          font-weight: 600;
+          padding: 12px 24px;
+          margin-bottom: 1rem;
+          color: white;
+          border-radius: 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          transition: background 0.2s ease, transform 0.2s ease;
+          background: #6772e5;
+          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+            0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        .download:hover,
+        .download:active,
+        .download:focus {
+          background: #8d96fb;
+          transform: translateY(-1px);
+        }
+        .download svg {
+          color: white;
+          margin-left: 16px;
+        }
         .home {
           display: flex;
           flex-direction: column;
@@ -77,7 +137,9 @@ const Home = () => {
 
         .logo {
           text-align: center;
-          margin: 0 0 2.5rem;
+          margin: 0 0 1.5rem;
+          position: relative;
+          height: 160px;
         }
 
         .logo img {
