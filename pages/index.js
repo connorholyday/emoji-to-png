@@ -8,23 +8,27 @@ import Layout from '../components/layout';
 
 const Home = () => {
   const emojiRef = useRef(new EmojiConverter());
-  const [path, setPath] = useState('/unicorn.png');
+  const [path, setPath] = useState('1f984.png');
   const [name, setName] = useState('Emoji to Png');
   const [id, setId] = useState('unicorn');
   const [set, setSet] = useState('apple');
-  const sets = [
-    'apple',
-    'google',
-    'twitter',
-    'emojione',
-    'messenger',
-    'facebook',
-  ];
+  const sets = {
+    apple: 'apple-160',
+    google: 'google-136',
+    twitter: 'twitter-72',
+    facebook: 'facebook-96',
+    messenger: 'messenger-128',
+  };
 
   const handleSelect = ({ colons, name, id }) => {
     setName(name);
     setId(id);
-    setPath(emojiRef.current.replace_colons(colons));
+    setPath(
+      emojiRef.current
+        .replace_colons(colons)
+        .split('/')
+        .pop()
+    );
   };
 
   const mainImage = useTransition(path, null, {
@@ -42,9 +46,9 @@ const Home = () => {
             <h1 className="logo">
               {mainImage.map(({ item, key, props }) => (
                 <animated.img
-                  key={id}
+                  key={key}
                   style={props}
-                  src={`/static${path}`}
+                  src={`/static/emoji-data/img-${sets[set]}/${path}`}
                   alt={name}
                 />
               ))}
@@ -52,8 +56,8 @@ const Home = () => {
             <div className="container">
               <div>
                 <a
-                  className="download"
-                  href={`/static${path}`}
+                  className="button download"
+                  href={`/static/emoji-data/img-${sets[set]}/${path}`}
                   download={`${id}.png`}
                 >
                   Download {id}.png
@@ -84,6 +88,18 @@ const Home = () => {
                 emoji="point_up"
                 exclude={['recent']}
               />
+              <div className="buttons">
+                {Object.keys(sets).map(key => (
+                  <button
+                    key={key}
+                    role="button"
+                    className={`set-button ${key === set && 'active'}`}
+                    onClick={() => setSet(key)}
+                  >
+                    {key}
+                  </button>
+                ))}
+              </div>
             </div>
           </main>
         </Layout>
@@ -94,31 +110,55 @@ const Home = () => {
           flex-direction: column;
           align-items: center;
         }
-        .download {
+        .button {
           font-size: 18px;
-          font-weight: 600;
+          font-size: 16px;
           padding: 12px 24px;
           margin-bottom: 1rem;
           color: white;
           border-radius: 8px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
           text-decoration: none;
           transition: background 0.2s ease, transform 0.2s ease;
           background: #6772e5;
           box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
             0 1px 3px rgba(0, 0, 0, 0.08);
         }
-        .download:hover,
-        .download:active,
-        .download:focus {
+        .button:hover,
+        .button:active,
+        .button:focus {
           background: #8d96fb;
           transform: translateY(-1px);
+        }
+        .download {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
         .download svg {
           color: white;
           margin-left: 16px;
+        }
+        .buttons {
+          display: flex;
+          margin-top: 16px;
+        }
+        .set-button {
+          font-size: 16px;
+          text-transform: capitalize;
+          background: none;
+          border: none;
+          margin: 0 4px;
+          cursor: pointer;
+        }
+        .set-button:active,
+        .set-button:focus {
+          outline: none;
+          text-decoration: underline;
+        }
+        .set-button.active {
+          color: #6772e5;
+          font-weight: 600;
+          text-decoration: none;
         }
         .home {
           display: flex;
