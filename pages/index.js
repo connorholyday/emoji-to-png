@@ -8,7 +8,7 @@ import Layout from '../components/layout';
 
 const Home = () => {
   const emojiRef = useRef(new EmojiConverter());
-  const [path, setPath] = useState('1f984.png');
+  const [path, setPath] = useState('1f3a8.png');
   const [name, setName] = useState('Emoji to Png');
   const [id, setId] = useState('unicorn');
   const [set, setSet] = useState('apple');
