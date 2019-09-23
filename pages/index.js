@@ -35,7 +35,7 @@ const Home = () => {
     initial: { transform: 'rotate(1turn)' },
     from: { transform: 'rotate(0turn)' },
     enter: { transform: 'rotate(1turn)' },
-    leave: { transform: 'rotate(1turn)' },
+    leave: { opacity: 0 },
   });
 
   return (
@@ -53,6 +53,11 @@ const Home = () => {
                       verticalAlign: 'middle',
                       height: 'auto',
                       maxWidth: '100%',
+                      position: 'absolute',
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                      left: 0,
                     }}
                     src={`/static/emoji-data/img-${sets[set]}/${path}`}
                     alt={name}
@@ -67,19 +72,17 @@ const Home = () => {
                 >
                   Download {id}.png
                   <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path
-                      d="M1 5l4 4 4-4M5 1v8"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
                   </svg>
                 </a>
               </div>
@@ -212,6 +215,7 @@ const Home = () => {
           position: relative;
           height: 80px;
           width: 80px;
+          position: relative;
         }
 
         @media (min-width: 768px) {
