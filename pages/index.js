@@ -48,7 +48,12 @@ const Home = () => {
                 {mainImage.map(({ item, key, props }) => (
                   <animated.img
                     key={key}
-                    style={props}
+                    style={{
+                      ...props,
+                      verticalAlign: 'middle',
+                      height: 'auto',
+                      maxWidth: '100%',
+                    }}
                     src={`/static/emoji-data/img-${sets[set]}/${path}`}
                     alt={name}
                   />
@@ -79,9 +84,9 @@ const Home = () => {
                 </a>
               </div>
               <p style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                Choose an emoji and then download it as an image
+                Choose an emoji and then download it as an&nbsp;image
               </p>
-              <div className="buttons">
+              <div className="buttons buttons-lg">
                 {Object.keys(sets).map(key => (
                   <button
                     key={key}
@@ -101,7 +106,20 @@ const Home = () => {
                 title="Pick your emoji..."
                 emoji="point_up"
                 exclude={['recent']}
+                style={{ maxWidth: '100%' }}
               />
+            </div>
+            <div className="buttons buttons-sm">
+              {Object.keys(sets).map(key => (
+                <button
+                  key={key}
+                  role="button"
+                  className={`set-button ${key === set && 'active'}`}
+                  onClick={() => setSet(key)}
+                >
+                  {key}
+                </button>
+              ))}
             </div>
           </main>
         </Layout>
@@ -142,14 +160,19 @@ const Home = () => {
         }
         .buttons {
           display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
           margin-top: 16px;
+        }
+        .buttons-lg {
+          display: none;
         }
         .set-button {
           font-size: 16px;
           text-transform: capitalize;
           background: none;
           border: none;
-          margin: 0 4px;
+          margin: 8px 16px;
           cursor: pointer;
         }
         .set-button:active,
@@ -168,10 +191,12 @@ const Home = () => {
           justify-content: space-between;
           align-items: center;
           min-height: 100vh;
+          padding: 16px;
         }
 
         .main {
           flex: 1;
+          max-width: 100%;
           margin-bottom: 20px;
         }
 
@@ -179,7 +204,14 @@ const Home = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-bottom: 40px;
+        }
+
+        .logo {
+          text-align: center;
+          margin: 0 0 1.5rem;
+          position: relative;
+          height: 80px;
+          width: 80px;
         }
 
         @media (min-width: 768px) {
@@ -189,80 +221,26 @@ const Home = () => {
           }
 
           .content {
-            margin-bottom: 0;
             margin-right: 80px;
           }
-        }
+          .buttons {
+            margin-top: 0;
+          }
+          .buttons-sm {
+            display: none;
+          }
+          .buttons-lg {
+            display: flex;
+          }
 
-        .logo {
-          text-align: center;
-          margin: 0 0 1.5rem;
-          position: relative;
-          height: 160px;
-        }
+          .logo {
+            height: 160px;
+            width: 160px;
+          }
 
-        .logo img {
-          vertical-align: middle;
-        }
-
-        .form {
-          text-align: center;
-          margin-bottom: 5rem;
-        }
-
-        .input-group {
-          position: relative;
-          display: flex;
-          text-align: center;
-          max-width: 30rem;
-          height: 3.75rem;
-          margin: 0 auto;
-          padding: 4px;
-          border-radius: 12px;
-          background: linear-gradient(
-            to right,
-            ${theme.colors.secondary},
-            ${theme.colors.primary}
-          );
-        }
-
-        .input-group .input {
-          flex: 1;
-          border: none;
-          font-size: 2rem;
-          text-align: center;
-          color: ${theme.colors.primary};
-          padding: 0.5rem;
-          background: white;
-          border-radius: 10px 0 0 10px;
-        }
-
-        .input:focus {
-          outline-color: ${theme.colors.primary};
-        }
-
-        .input-group .button {
-          flex-shrink: 0;
-          background: transparent;
-          color: white;
-          font-size: 1.25rem;
-          font-weight: 700;
-          line-height: 1;
-          padding: 1rem;
-          box-shadow: none;
-          border: 0;
-          cursor: pointer;
-        }
-
-        .input-group .button:focus {
-          outline-color: ${theme.colors.primary};
-        }
-
-        .label {
-          font-size: 18px;
-          font-weight: 600;
-          margin-bottom: 1.5rem;
-          display: block;
+          .set-button {
+            margin: 0 4px;
+          }
         }
       `}</style>
     </>
