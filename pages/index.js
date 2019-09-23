@@ -43,17 +43,17 @@ const Home = () => {
       <div className="home">
         <Layout>
           <main className="main">
-            <h1 className="logo">
-              {mainImage.map(({ item, key, props }) => (
-                <animated.img
-                  key={key}
-                  style={props}
-                  src={`/static/emoji-data/img-${sets[set]}/${path}`}
-                  alt={name}
-                />
-              ))}
-            </h1>
-            <div className="container">
+            <div className="content">
+              <h1 className="logo">
+                {mainImage.map(({ item, key, props }) => (
+                  <animated.img
+                    key={key}
+                    style={props}
+                    src={`/static/emoji-data/img-${sets[set]}/${path}`}
+                    alt={name}
+                  />
+                ))}
+              </h1>
               <div>
                 <a
                   className="button download"
@@ -81,13 +81,6 @@ const Home = () => {
               <p style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                 Choose an emoji and then download it as an image
               </p>
-              <Picker
-                onSelect={handleSelect}
-                set={set}
-                title="Pick your emoji..."
-                emoji="point_up"
-                exclude={['recent']}
-              />
               <div className="buttons">
                 {Object.keys(sets).map(key => (
                   <button
@@ -100,6 +93,15 @@ const Home = () => {
                   </button>
                 ))}
               </div>
+            </div>
+            <div className="container">
+              <Picker
+                onSelect={handleSelect}
+                set={set}
+                title="Pick your emoji..."
+                emoji="point_up"
+                exclude={['recent']}
+              />
             </div>
           </main>
         </Layout>
@@ -165,14 +167,31 @@ const Home = () => {
           flex-direction: column;
           justify-content: space-between;
           align-items: center;
-          height: 100vh;
+          min-height: 100vh;
         }
 
         .main {
           flex: 1;
+          margin-bottom: 20px;
+        }
+
+        .content {
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          align-items: center;
+          margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+          .main {
+            display: flex;
+            align-items: center;
+          }
+
+          .content {
+            margin-bottom: 0;
+            margin-right: 80px;
+          }
         }
 
         .logo {
