@@ -4,6 +4,8 @@
 
 Convert an emoji to PNG with the click of a button!
 
-Type an emoji name or enter an emoji to get an image version so you can use it anywhere.
+## With thanks to
 
-Accepts the text name or the emoji like so: `apple` or `🍎`
+- [emoji-mart](https://github.com/missive/emoji-mart) for the emoji picker
+- [emoji-data](https://github.com/iamcal/emoji-data) for the emoji images
+- [js-emoji](https://github.com/iamcal/js-emoji) for mapping emoji to images
