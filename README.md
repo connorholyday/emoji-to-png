@@ -1,8 +1,8 @@
-# Emoji to PNG
+# Emoji to Image
 
 ✨https://emoji.aranja.com/ ✨
 
-Convert an emoji to PNG with the click of a button!
+Convert an emoji to an image with the click of a button!
 
 ## With thanks to
 

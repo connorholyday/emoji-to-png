@@ -1,13 +1,13 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
 export default () => (
   <Head>
     <meta charSet="utf-8" />
-    <title>Emoji to PNG</title>
+    <title>Emoji to image</title>
     <meta
       name="description"
-      content="Convert an emoji to PNG with the click of a button!"
+      content="Convert an emoji to an image with the click of a button!"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
