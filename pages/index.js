@@ -191,10 +191,9 @@ const Home = () => {
         .home {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
           align-items: center;
           min-height: 100vh;
-          padding: 16px;
+          padding: 0 16px;
         }
 
         .main {
