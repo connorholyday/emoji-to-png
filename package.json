@@ -10,7 +10,7 @@
     "dependencies": {
         "@zeit/next-css": "^1.0.1",
         "emoji-mart": "^2.11.1",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "next": "9.3.2",
         "node-emoji": "^1.10.0",
         "react": "16.9.0",
